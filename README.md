@@ -1,5 +1,4 @@
-# Machine-Learning
-Airbnb housing feature in Machine Learning with SK-learn
+# Airbnb Housing Features in Machine Learning Models
 
 # Outline:
 1. Data Ingesting and Preprocessing
@@ -15,12 +14,9 @@ Conducted feature engineering by one-hot encoding with dummy columns that improv
 6. Evalue the performance using confusion matrix, get good accurate
 
 
-SK-learn - classification model with/without PCA
-SparkML - regression model with regularization (L1, L2, Net) with/without PCA
-SparkML - random forest
 
 
-# Classification Model
+# Classification Model (logistic regression without regularization using sklearn)
 Goal: predict binary outcomes (wether the housing rating is high or low)
 Step:
 - create a new column that contains rating boolean (1 or 0) with certain cretria.
@@ -47,8 +43,8 @@ after PCA: 0.6835
 发现后者的 performance 要好一些
 
 SparkML:
-before PCA：0.6833
-after PCA: 0.6835
+without regu：0.6859
+with reg: 
 
 
 # Improvement:
@@ -71,3 +67,16 @@ Conduct a train-test split where 80% of the data is assigned to the training set
 
 Next,
 Logistic Regression Using SparkML (models same as before but in SparkML)...
+
+# SparkML (logistic regression with regularization using SparkML)
+
+
+# Challenge:
+
+**1. Apply numerical values to classification model**
+（与普通的cleaning不一样）这一步是 particularly base on ML 的进一步处理 - Feature engineering is the process of applying domain knowledge to extract features from raw data via data mining techniques. These features can be used to improve the performance of machine learning algorithms - 这个Project的FE重点在于对数据类型的改变(categorical -> numerical)让文字也能进入modeling
+两种方式：1 简单的binary 01处理通过 apply and lambda function。2 当feature不能仅用function去转换的时候，使用 one-hot encoding by creating dummy columns for each desired feature
+Conducted feature engineering by one-hot encoding with dummy columns that improved the ML algorithms.
+
+**2. Engine Optimize as dataset grows large**
+Standard implementations of machine learning algorithms require very powerful machines to be able to run. However, depending on high-end machines is not advantageous due to their high price and improper costs of scaling up. The idea of using distributed computing engines is to distribute the calculations to multiple low-end machines (commodity hardware) instead of a single high-end one. This definitely speeds up the learning phase and allows us to create better models.
